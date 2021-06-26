@@ -30,8 +30,6 @@ var characters = {
 
   }
 
-console.log(characters.symbols());
-
 function getLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
@@ -55,10 +53,27 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
+  var passLength = characters.characterlength();
+  var passLowcase = characters.lowercase();
+  var passUppercase = characters.uppercase();
+  var passSymbol = characters.symbols ();
+
   passwordText.value = password;
-  function generatePassword () {}
+  
+  function generatePassword () {
 
+    for (var i = 0; i < passLength; i++) { 
+      if ( passLowcase == true) {
+        var lcase= getLower();
+        password[i].appendChild (lcase);
+
+        console.log(password)
+      };
+
+    
+  }
+
+};
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
