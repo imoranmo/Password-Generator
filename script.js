@@ -1,20 +1,24 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
+// Object containing prompts to create password
 var characters = {
 
   characterlength: function() {
      var length = window.prompt ("How long would you like your password?");
 
-     if (!length){
-       return
+     if ( /^[0-9.,]+$/.test(length) && length >=8 && length <=128){
+       return length;
      }
-      if (length < 8 || length > 128) {
+      else if (!length) {
+        return;
+      }
+      else {
           window.alert("you can only create a password which contains 8-128 characters");
           length = characters.characterlength();
+          
         }
-     return length;
+        return length;
      },
  lowercase: function() {
        var lower = window.confirm ("Would you like to include lower case characters?");
@@ -40,6 +44,8 @@ var characters = {
 
   }
 
+  // Functions which pull random characters
+
 function getLower() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
 }
@@ -58,7 +64,7 @@ function getSymbol() {
 }
 
 
-// Write password to the #password input
+// Write password 
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
@@ -67,9 +73,12 @@ function writePassword() {
   
 };
 
+// Function to generate password
+
 function generatePassword () {
 
   var passLength = characters.characterlength();
+
   if (!passLength){
     return
   }
@@ -105,5 +114,5 @@ function generatePassword () {
 return pass
 }
 
-// Add event listener to generate button
+// event listener to generate button
 generateBtn.addEventListener("click", writePassword);
